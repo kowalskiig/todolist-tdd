@@ -59,4 +59,19 @@ public class AtualizarTarefaServiceTest {
         Assertions.assertEquals(TarefaStatus.EM_ANDAMENTO,tarefaResponseDTO.getTarefaStatus());
     }
 
+
+    @Test
+    public void atualizarEstadoParaEmAndamento_DeveLancarExcecao_QuandoIdNaoExiste(){
+        Long idInexistente =1L;
+
+        Mockito.when(tarefaRepository.findById(idInexistente))
+                .thenReturn(Optional.empty());
+
+        Assertions.assertThrows(ResourceNotFoundException.class, () -> {
+
+            tarefaService
+                    .atualizarEstadoParaEmAndamento(idInexistente);
+        });
+
+    }
 }
