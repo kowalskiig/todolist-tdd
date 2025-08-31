@@ -23,12 +23,13 @@ public class TarefaControllerIT {
     @LocalServerPort
     private int port;
 
-    private TarefaRequestDTO newTarefaRequestDTO;
+    private TarefaRequestDTO newTarefaRequestDTO, emptyTarefaRequestDTO;
 
     @BeforeEach
     void setUp() {
         RestAssured.port = port;
         newTarefaRequestDTO = new TarefaRequestDTO("description", "titulo");
+        emptyTarefaRequestDTO = new TarefaRequestDTO();
     }
 
     @Test
@@ -49,5 +50,21 @@ public class TarefaControllerIT {
                 .body("tarefaStatus", is("CRIADA"));
     }
 
+
+    @Test
+    public void criarTarefaDeveriaRetornarUnprocessableEntityQuandoCamposNullos(){
+        given()
+                .body(emptyTarefaRequestDTO)
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .when()
+                .post("/tarefas")
+
+                .then()
+                .statusCode(422)
+                .body("errors.fieldName", hasItems("name", "description"))
+                .body("errors", hasSize(2))
+                .body("errors.message", hasItems("Campo requerido"));
+    }
 }
 
