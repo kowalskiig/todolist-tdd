@@ -19,7 +19,7 @@ import java.time.Instant;
 import static org.mockito.ArgumentMatchers.any;
 
 @ExtendWith(SpringExtension.class)
-public class TarefaServiceTest {
+public class CriarTarefaServiceTest {
 
     @InjectMocks
     private TarefaServiceImpl tarefaService ;
@@ -31,12 +31,14 @@ public class TarefaServiceTest {
 
     private TarefaRequestDTO tarefaRequestDTOComDados;
 
+
     @BeforeEach
     void setUP(){
-        tarefaCriada = new Tarefa(1L ,TarefaStatus.CRIADA, "Estrutura Projeto", Instant.now(), "Projet TDD");
-        Mockito.when(tarefaRepository.save(any())).thenReturn(tarefaCriada);
 
+        tarefaCriada = new Tarefa(1L ,TarefaStatus.CRIADA, "Estrutura Projeto", Instant.now(), "Projet TDD");
         tarefaRequestDTOComDados = new TarefaRequestDTO("Aprender DTO", "Estrutura Projeto");
+
+        Mockito.when(tarefaRepository.save(any())).thenReturn(tarefaCriada);
 
 
     }
@@ -52,6 +54,5 @@ public class TarefaServiceTest {
         Assertions.assertNotNull(tarefaResponseDTO.getCreatedAt());
         Assertions.assertEquals(TarefaStatus.CRIADA, tarefaResponseDTO.getTarefaStatus());
     }
-
 
 }
