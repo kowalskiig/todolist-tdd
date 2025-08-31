@@ -3,6 +3,7 @@ package com.todo.list.service;
 import com.todo.list.dto.TarefaResponseDTO;
 import com.todo.list.entity.Tarefa;
 import com.todo.list.enums.TarefaStatus;
+import com.todo.list.exceptions.ResourceNotFoundException;
 import com.todo.list.repository.TarefaRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
