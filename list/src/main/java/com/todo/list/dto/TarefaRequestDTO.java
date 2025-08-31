@@ -1,7 +1,13 @@
 package com.todo.list.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import org.antlr.v4.runtime.misc.NotNull;
+
 public class TarefaRequestDTO {
+
+    @NotBlank(message = "Campo requerido")
     private String name;
+    @NotBlank(message = "Campo requerido")
     private  String description;
 
     public TarefaRequestDTO(){}

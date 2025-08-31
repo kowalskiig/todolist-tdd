@@ -39,6 +39,7 @@ public class TarefaControllerIT {
                 .accept(ContentType.JSON)
                 .when()
                 .post("/tarefas")
+
                 .then()
                 .statusCode(201)
                 .body("id", notNullValue())
@@ -47,5 +48,6 @@ public class TarefaControllerIT {
                 .body("createdAt", notNullValue())
                 .body("tarefaStatus", is("CRIADA"));
     }
+
 }
 

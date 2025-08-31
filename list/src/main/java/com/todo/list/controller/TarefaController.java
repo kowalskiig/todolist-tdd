@@ -3,6 +3,7 @@ package com.todo.list.controller;
 import com.todo.list.dto.TarefaRequestDTO;
 import com.todo.list.dto.TarefaResponseDTO;
 import com.todo.list.service.TarefaServiceImpl;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,7 +24,7 @@ public class TarefaController {
     }
 
     @PostMapping
-    public ResponseEntity<TarefaResponseDTO> criarTarefa(@RequestBody TarefaRequestDTO tarefaRequestDTO){
+    public ResponseEntity<TarefaResponseDTO> criarTarefa(@Valid @RequestBody TarefaRequestDTO tarefaRequestDTO){
         TarefaResponseDTO result = tarefaService.criarTarefa(tarefaRequestDTO);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(result.getId()).toUri();
         return ResponseEntity.created(uri).body(result);
