@@ -35,7 +35,7 @@ public class TarefaServiceTest {
         TarefaResponseDTO tarefaResponseDTO = tarefaService.criarTarefa(requestDTO);
 
         Assertions.assertNotNull(tarefaResponseDTO.getId());
-        Assertions.assertEquals(tarefaResponseDTO.getTitle(), tarefa.getName());
+        Assertions.assertEquals(tarefaResponseDTO.getName(), tarefa.getName());
         Assertions.assertEquals(tarefaResponseDTO.getDescription(), tarefa.getDescription());
         Assertions.assertNotNull(tarefaResponseDTO.getCreatedAt());
         Assertions.assertEquals(TarefaStatus.CRIADA, tarefaResponseDTO.getTarefaStatus());
