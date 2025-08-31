@@ -22,12 +22,22 @@ public class Tarefa {
 
     }
 
-    public Tarefa(String name, String description, Instant instant) {
-        this.name = name;
+    public Tarefa(Long id, TarefaStatus status, String description, Instant createdAt, String name) {
+        this.id = id;
+        this.status = status;
         this.description = description;
         this.createdAt = createdAt;
+        this.name = name;
+    }
+
+    public Tarefa(String name, String description) {
+        this.name = name;
+        this.description = description;
+        this.createdAt = Instant.now();
         this.status = TarefaStatus.CRIADA;
     }
+
+
 
     public Long getId() {
         return id;

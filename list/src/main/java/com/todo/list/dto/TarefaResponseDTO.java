@@ -8,10 +8,10 @@ import java.time.Instant;
 public class TarefaResponseDTO {
 
     private Long id;
-    private String name;
+    private String title;
     private String description;
     private Instant createdAt;
-    private TarefaStatus status;
+    private TarefaStatus tarefaStatus;
 
     public TarefaResponseDTO(){
 
@@ -19,10 +19,10 @@ public class TarefaResponseDTO {
 
     public TarefaResponseDTO(Tarefa tarefa){
         id = tarefa.getId();
-        name = tarefa.getName();
+        title = tarefa.getName();
         description = tarefa.getDescription();
         createdAt = tarefa.getCreatedAt();
-        status = tarefa.getStatus();
+        tarefaStatus = tarefa.getStatus();
     }
 
     public Long getId() {
@@ -33,15 +33,15 @@ public class TarefaResponseDTO {
         return createdAt;
     }
 
-    public TarefaStatus getStatus() {
-        return status;
+    public TarefaStatus getTarefaStatus() {
+        return tarefaStatus;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 }
