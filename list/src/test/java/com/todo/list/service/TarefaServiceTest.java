@@ -6,6 +6,7 @@ import com.todo.list.entity.Tarefa;
 import com.todo.list.enums.TarefaStatus;
 import com.todo.list.repository.TarefaRepository;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -26,20 +27,31 @@ public class TarefaServiceTest {
     @Mock
     private TarefaRepository tarefaRepository;
 
-    @Test
-    public void criarTarefaDeveCriarTarefaComStatusIniciadaQuandoCensarioSucesso(){
-        Tarefa tarefa = new Tarefa(1L ,TarefaStatus.CRIADA, "Estrutura Projeto", Instant.now(), "Projet TDD");
-        Mockito.when(tarefaRepository.save(any())).thenReturn(tarefa);
+    private Tarefa tarefaCriada;
 
-        TarefaRequestDTO requestDTO = new TarefaRequestDTO("Aprender DTO", "Estrutura Projeto");
-        TarefaResponseDTO tarefaResponseDTO = tarefaService.criarTarefa(requestDTO);
+    private TarefaRequestDTO tarefaRequestDTOComDados;
 
-        Assertions.assertNotNull(tarefaResponseDTO.getId());
-        Assertions.assertEquals(tarefaResponseDTO.getName(), tarefa.getName());
-        Assertions.assertEquals(tarefaResponseDTO.getDescription(), tarefa.getDescription());
-        Assertions.assertNotNull(tarefaResponseDTO.getCreatedAt());
-        Assertions.assertEquals(TarefaStatus.CRIADA, tarefaResponseDTO.getTarefaStatus());
+    @BeforeEach
+    void setUP(){
+        tarefaCriada = new Tarefa(1L ,TarefaStatus.CRIADA, "Estrutura Projeto", Instant.now(), "Projet TDD");
+        Mockito.when(tarefaRepository.save(any())).thenReturn(tarefaCriada);
+
+        tarefaRequestDTOComDados = new TarefaRequestDTO("Aprender DTO", "Estrutura Projeto");
 
 
     }
+
+    @Test
+    public void criarTarefaDeveCriarTarefaComStatusIniciadaQuandoCenarioSucesso(){
+
+        TarefaResponseDTO tarefaResponseDTO = tarefaService.criarTarefa(tarefaRequestDTOComDados);
+
+        Assertions.assertNotNull(tarefaResponseDTO.getId());
+        Assertions.assertEquals(tarefaResponseDTO.getName(), tarefaCriada.getName());
+        Assertions.assertEquals(tarefaResponseDTO.getDescription(), tarefaCriada.getDescription());
+        Assertions.assertNotNull(tarefaResponseDTO.getCreatedAt());
+        Assertions.assertEquals(TarefaStatus.CRIADA, tarefaResponseDTO.getTarefaStatus());
+    }
+
+
 }
