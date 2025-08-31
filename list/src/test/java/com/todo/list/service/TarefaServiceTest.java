@@ -31,12 +31,13 @@ public class TarefaServiceTest {
         Tarefa tarefa = new Tarefa(1L ,TarefaStatus.CRIADA, "Estrutura Projeto", Instant.now(), "Projet TDD");
         Mockito.when(tarefaRepository.save(any())).thenReturn(tarefa);
 
-        TarefaRequestDTO requeestDTO = new TarefaRequestDTO("Aprender DTO", "Estrutura Projeto");
-        TarefaResponseDTO tarefaResponseDTO = tarefaService.criarTarefa(requeestDTO);
+        TarefaRequestDTO requestDTO = new TarefaRequestDTO("Aprender DTO", "Estrutura Projeto");
+        TarefaResponseDTO tarefaResponseDTO = tarefaService.criarTarefa(requestDTO);
 
         Assertions.assertNotNull(tarefaResponseDTO.getId());
         Assertions.assertEquals(tarefaResponseDTO.getTitle(), tarefa.getName());
         Assertions.assertEquals(tarefaResponseDTO.getDescription(), tarefa.getDescription());
+        Assertions.assertNotNull(tarefaResponseDTO.getCreatedAt());
         Assertions.assertEquals(TarefaStatus.CRIADA, tarefaResponseDTO.getTarefaStatus());
 
 

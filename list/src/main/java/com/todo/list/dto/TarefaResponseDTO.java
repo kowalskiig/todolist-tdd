@@ -17,12 +17,12 @@ public class TarefaResponseDTO {
 
     }
 
-    public TarefaResponseDTO(Tarefa tarefa){
-        id = tarefa.getId();
-        title = tarefa.getName();
-        description = tarefa.getDescription();
-        createdAt = tarefa.getCreatedAt();
-        tarefaStatus = tarefa.getStatus();
+    public TarefaResponseDTO(Long id, TarefaStatus tarefaStatus, Instant createdAt, String description, String title) {
+        this.id = id;
+        this.tarefaStatus = tarefaStatus;
+        this.createdAt = createdAt;
+        this.description = description;
+        this.title = title;
     }
 
     public Long getId() {

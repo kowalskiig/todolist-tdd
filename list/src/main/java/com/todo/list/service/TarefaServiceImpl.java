@@ -3,11 +3,14 @@ package com.todo.list.service;
 import com.todo.list.dto.TarefaRequestDTO;
 import com.todo.list.dto.TarefaResponseDTO;
 import com.todo.list.entity.Tarefa;
+import com.todo.list.mapper.TarefaMapper;
 import com.todo.list.repository.TarefaRepository;
+
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class TarefaServiceImpl implements TarefaServiceContrato {
+public class TarefaServiceImpl{
 
     private final TarefaRepository tarefaRepository;
 
@@ -15,14 +18,10 @@ public class TarefaServiceImpl implements TarefaServiceContrato {
         this.tarefaRepository = tarefaRepository;
     }
 
-    @Override
+    @Transactional(readOnly = false)
     public TarefaResponseDTO criarTarefa(TarefaRequestDTO tarefaRequestDTO) {
-        Tarefa tarefa = new Tarefa(
-                tarefaRequestDTO.getName(),
-                tarefaRequestDTO.getDescription());
+        Tarefa tarefa = TarefaMapper.dtoParaTarefa(tarefaRequestDTO);
 
-
-        tarefa = tarefaRepository.save(tarefa);
-        return new TarefaResponseDTO(tarefa);
+        return TarefaMapper.tarefaParaDto(tarefaRepository.save(tarefa));
     }
 }
