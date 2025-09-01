@@ -17,7 +17,6 @@ Este projeto foi idealizado com o objetivo de aplicar **TDD (Desenvolvimento Ori
 - ⏱️ A tarefa inicia com status `CRIADA` e data de criação automática.
 - ✅ Atualizar o status da tarefa:
   - `CRIADA → EM_ANDAMENTO → FINALIZADA`
-  - ou `CRIADA → CANCELADA`
 - ⚠️ Apenas uma tarefa pode estar com status `EM_ANDAMENTO` por vez.
 - ❌ Ações com IDs inexistentes são bloqueadas com exceções apropriadas.
 - 🔁 Listagem com ordenação por data (em desenvolvimento).
@@ -63,7 +62,7 @@ O projeto foi construído seguindo os princípios do TDD:
 
 - Aprimoramento na habilidade de testes (tanto unitários quanto integração);
 - Entendimento sobre a metodologia de desenvolvimento TDD, compreendendo o fluxo RED, GREEN, REFACTOR.
-- Mundança de pensando, um dos príncipios do TDD é adicionar ao código apenas aquilo que você irá usar, YAGNI ("You Ain't Gonna Need It")
+- Mundança de pensamento, acompanhando um dos príncipios do TDD é adicionar ao código apenas aquilo que você irá usar, YAGNI ("You Ain't Gonna Need It")
 - Maior maturidade ao pensar na resolução do problema antes da implementação no código.
 
 ---
