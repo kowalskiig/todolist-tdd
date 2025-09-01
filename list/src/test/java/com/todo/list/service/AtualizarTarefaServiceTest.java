@@ -13,6 +13,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.time.Instant;
 import java.util.Optional;
@@ -62,7 +63,7 @@ public class AtualizarTarefaServiceTest {
 
 
     @Test
-    public void atualizarEstadoParaEmAndamento_DeveLancarExcecao_QuandoIdNaoExiste(){
+    public void atualizarEstadoParaEmAndamentoDeveLancarResourceNotFoundExceptionQuandoIdNaoExiste(){
         Long idInexistente =1L;
 
         Mockito.when(tarefaRepository.findById(idInexistente))
@@ -74,5 +75,21 @@ public class AtualizarTarefaServiceTest {
                     .atualizarEstadoParaEmAndamento(idInexistente);
         });
 
+    }
+
+    @Test
+    public void atualizarEstadoParaEmAndamentoDeveLancarUnprocessableEntityQuandoEstadoDiferenteDo(){
+        Long idExistenteTarefaComStatusEmAndamento = 1L;
+
+        Tarefa tarefaComStatusEmAndamento = new Tarefa(1L , TarefaStatus.EM_ANDAMENTO, "Estrutura Projeto", Instant.now(), "Projet TDD");
+
+        Mockito.when(tarefaRepository.findById(idExistenteTarefaComStatusEmAndamento))
+                .thenReturn(Optional.of(tarefaComStatusEmAndamento));
+
+        Assertions.assertThrows(UnprocessableEntity.class, () -> {
+
+            tarefaService
+                    .atualizarEstadoParaEmAndamento(idExistenteTarefaComStatusEmAndamento);
+        });
     }
 }

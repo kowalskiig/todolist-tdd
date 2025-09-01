@@ -24,7 +24,8 @@ public class TarefaServiceImpl{
     public TarefaResponseDTO criarTarefa(TarefaRequestDTO tarefaRequestDTO) {
         Tarefa tarefa = TarefaMapper.dtoParaTarefa(tarefaRequestDTO);
 
-        return TarefaMapper.tarefaParaDto(tarefaRepository.save(tarefa));
+        return TarefaMapper
+                .tarefaParaDto(tarefaRepository.save(tarefa));
     }
 
 
@@ -35,6 +36,7 @@ public class TarefaServiceImpl{
 
         tarefa.setStatus(TarefaStatus.EM_ANDAMENTO);
 
-        return TarefaMapper.tarefaParaDto(tarefaRepository.save(tarefa));
+        return TarefaMapper
+                .tarefaParaDto(tarefaRepository.save(tarefa));
     }
 }
