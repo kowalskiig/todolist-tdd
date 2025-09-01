@@ -65,12 +65,6 @@ public class AtualizarTarefaServiceTest {
         Mockito.when(tarefaRepository.existeTarefaEmAndamento())
                 .thenReturn(false);
 
-
-
-
-
-
-
     }
 
     @Test
