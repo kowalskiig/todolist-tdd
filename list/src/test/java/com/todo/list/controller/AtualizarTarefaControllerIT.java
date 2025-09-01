@@ -20,12 +20,14 @@ public class AtualizarTarefaControllerIT {
 
     @LocalServerPort
     private int port;
-    private Long tarefaExistenteIdStatusCriada;
+    private Long tarefaExistenteIdStatusCriada, tarefaInexistenteId;
 
     @BeforeEach
     void setUp() {
         RestAssured.port = port;
         tarefaExistenteIdStatusCriada = 1L;
+        tarefaInexistenteId =3000L;
+
     }
 
     @Test
@@ -41,5 +43,15 @@ public class AtualizarTarefaControllerIT {
                 .body("tarefaStatus", is("EM_ANDAMENTO"));
     }
 
+    @Test
+    public void atualizarStatusTarefaParaEmAndamentoDeveriaAtualizarTarefaQuandoIdInexistente(){
+        given()
+                .when()
+                .put("/tarefas/{tarefaInexistenteId}", tarefaInexistenteId)
+
+                .then()
+                .statusCode(404)
+                .body("error", is("Tarefa com id (" + tarefaInexistenteId + ") não existe"));
+    }
 
 }
