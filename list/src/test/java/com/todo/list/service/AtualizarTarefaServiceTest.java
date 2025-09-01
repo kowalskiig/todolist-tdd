@@ -97,7 +97,7 @@ public class AtualizarTarefaServiceTest {
     public void atualizarEstadoParaEmAndamentoDeveLancarUnprocessableEntityQuandoExisteTarefaEmAndamento(){
 
         Long idExistenteTarefaComStatusCriada = 1L;
-        
+
         Mockito.when(tarefaRepository.existeTarefaEmAndamento())
                 .thenReturn(true);
 

@@ -32,6 +32,10 @@ public class TarefaServiceImpl{
 
     @Transactional(readOnly = false)
     public TarefaResponseDTO atualizarEstadoParaEmAndamento(Long id) {
+        if(tarefaRepository.existeTarefaEmAndamento()){
+            throw new UnprocessableEntity("Existe uma tarefa em andamento, termine ela e começe outra");
+        }
+
         Tarefa tarefa = tarefaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Tarefa com "+ id + "não existe"));
 
