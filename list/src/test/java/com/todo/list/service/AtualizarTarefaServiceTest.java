@@ -30,10 +30,43 @@ public class AtualizarTarefaServiceTest {
     private TarefaRepository tarefaRepository;
 
 
+    private Long idExistenteTarefa, idInexistente, idExistenteTarefaComStatusEmAndamento;
+
+    private Tarefa tarefaStatusCriada,tarefaComStatusEmAndamento;
 
 
     @BeforeEach
     void setUp(){
+
+    idExistenteTarefa =1L;
+    idInexistente=2L;
+    idExistenteTarefaComStatusEmAndamento=3L;
+
+
+    tarefaStatusCriada = new Tarefa(1L , TarefaStatus.CRIADA, "Estrutura Projeto", Instant.now(), "Projet TDD");
+
+    tarefaComStatusEmAndamento = new Tarefa(1L , TarefaStatus.EM_ANDAMENTO, "Estrutura Projeto", Instant.now(), "Projet TDD");
+
+
+    Mockito.when(tarefaRepository.findById(idExistenteTarefa))
+                .thenReturn(Optional.of(tarefaStatusCriada));
+
+    Mockito.when(tarefaRepository.findById(idInexistente))
+                .thenReturn(Optional.empty());
+
+    Mockito.when(tarefaRepository.findById(idExistenteTarefaComStatusEmAndamento))
+                .thenReturn(Optional.of(tarefaComStatusEmAndamento));
+
+
+
+    Mockito.when(tarefaRepository.save(any()))
+                .thenAnswer(invocation -> invocation.getArgument(0));
+
+        Mockito.when(tarefaRepository.existeTarefaEmAndamento())
+                .thenReturn(false);
+
+
+
 
 
 
@@ -42,14 +75,6 @@ public class AtualizarTarefaServiceTest {
 
     @Test
     public void atualizarEstadoTarefaParaEmAndamentoDeveriaAtualizarEstadoQuandoEstadoTarefaÉCriada(){
-
-        Long idExistenteTarefa = 1L;
-        Tarefa tarefaCriada = new Tarefa(1L , TarefaStatus.CRIADA, "Estrutura Projeto", Instant.now(), "Projet TDD");
-
-        Mockito.when(tarefaRepository.findById(idExistenteTarefa))
-                .thenReturn(Optional.of(tarefaCriada));
-        Mockito.when(tarefaRepository.save(any()))
-                .thenAnswer(invocation -> invocation.getArgument(0));
 
         //acao
 
@@ -64,10 +89,6 @@ public class AtualizarTarefaServiceTest {
 
     @Test
     public void atualizarEstadoParaEmAndamentoDeveLancarResourceNotFoundExceptionQuandoIdNaoExiste(){
-        Long idInexistente =1L;
-
-        Mockito.when(tarefaRepository.findById(idInexistente))
-                .thenReturn(Optional.empty());
 
         Assertions.assertThrows(ResourceNotFoundException.class, () -> {
 
@@ -79,12 +100,6 @@ public class AtualizarTarefaServiceTest {
 
     @Test
     public void atualizarEstadoParaEmAndamentoDeveLancarUnprocessableEntityQuandoEstadoDiferenteDoCriada(){
-        Long idExistenteTarefaComStatusEmAndamento = 1L;
-
-        Tarefa tarefaComStatusEmAndamento = new Tarefa(1L , TarefaStatus.EM_ANDAMENTO, "Estrutura Projeto", Instant.now(), "Projet TDD");
-
-        Mockito.when(tarefaRepository.findById(idExistenteTarefaComStatusEmAndamento))
-                .thenReturn(Optional.of(tarefaComStatusEmAndamento));
 
         Assertions.assertThrows(UnprocessableEntity.class, () -> {
 
@@ -96,14 +111,12 @@ public class AtualizarTarefaServiceTest {
     @Test
     public void atualizarEstadoParaEmAndamentoDeveLancarUnprocessableEntityQuandoExisteTarefaEmAndamento(){
 
-        Long idExistenteTarefaComStatusCriada = 1L;
-
         Mockito.when(tarefaRepository.existeTarefaEmAndamento())
                 .thenReturn(true);
 
         Assertions.assertThrows(UnprocessableEntity.class, () -> {
             tarefaService
-                    .atualizarEstadoParaEmAndamento(idExistenteTarefaComStatusCriada);
+                    .atualizarEstadoParaEmAndamento(idExistenteTarefa);
         });
     }
 
