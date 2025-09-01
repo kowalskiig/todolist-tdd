@@ -37,7 +37,7 @@ public class TarefaServiceImpl{
         }
 
         Tarefa tarefa = tarefaRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Tarefa com "+ id + "não existe"));
+                .orElseThrow(() -> new ResourceNotFoundException("Tarefa com id (" + id + ") não existe"));
 
         if(!tarefa.getStatus().equals(TarefaStatus.CRIADA)){
             throw new UnprocessableEntity("Só pode mudar o status para (EM ANDAMENTO) de tarefas com status (Criada)");
