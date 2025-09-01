@@ -4,6 +4,7 @@ import com.todo.list.dto.TarefaResponseDTO;
 import com.todo.list.entity.Tarefa;
 import com.todo.list.enums.TarefaStatus;
 import com.todo.list.exceptions.ResourceNotFoundException;
+import com.todo.list.exceptions.UnprocessableEntity;
 import com.todo.list.repository.TarefaRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,7 +14,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.web.client.HttpClientErrorException;
 
 import java.time.Instant;
 import java.util.Optional;

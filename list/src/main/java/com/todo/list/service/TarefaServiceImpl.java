@@ -34,6 +34,8 @@ public class TarefaServiceImpl{
         Tarefa tarefa = tarefaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Tarefa com "+ id + "não existe"));
 
+
+
         tarefa.setStatus(TarefaStatus.EM_ANDAMENTO);
 
         return TarefaMapper
