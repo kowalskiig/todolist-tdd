@@ -5,10 +5,7 @@ import com.todo.list.dto.TarefaResponseDTO;
 import com.todo.list.service.TarefaServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
@@ -29,4 +26,11 @@ public class TarefaController {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(result.getId()).toUri();
         return ResponseEntity.created(uri).body(result);
     }
+
+    @PutMapping(value = "{id}")
+    public ResponseEntity<TarefaResponseDTO> atualizarStatusTarefaParaAndamento(@PathVariable Long id){
+        TarefaResponseDTO result = tarefaService.atualizarEstadoParaEmAndamento(id);
+        return ResponseEntity.ok(result);
+    }
+
 }
