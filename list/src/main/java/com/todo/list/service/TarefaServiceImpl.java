@@ -5,6 +5,7 @@ import com.todo.list.dto.TarefaResponseDTO;
 import com.todo.list.entity.Tarefa;
 import com.todo.list.enums.TarefaStatus;
 import com.todo.list.exceptions.ResourceNotFoundException;
+import com.todo.list.exceptions.UnprocessableEntity;
 import com.todo.list.mapper.TarefaMapper;
 import com.todo.list.repository.TarefaRepository;
 
@@ -34,7 +35,9 @@ public class TarefaServiceImpl{
         Tarefa tarefa = tarefaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Tarefa com "+ id + "não existe"));
 
-
+        if(!tarefa.getStatus().equals(TarefaStatus.CRIADA)){
+            throw new UnprocessableEntity("Só pode mudar o status para (EM ANDAMENTO) de tarefas com status (Criada)");
+        }
 
         tarefa.setStatus(TarefaStatus.EM_ANDAMENTO);
 

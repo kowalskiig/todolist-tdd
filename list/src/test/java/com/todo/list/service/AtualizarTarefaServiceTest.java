@@ -78,7 +78,7 @@ public class AtualizarTarefaServiceTest {
     }
 
     @Test
-    public void atualizarEstadoParaEmAndamentoDeveLancarUnprocessableEntityQuandoEstadoDiferenteDo(){
+    public void atualizarEstadoParaEmAndamentoDeveLancarUnprocessableEntityQuandoEstadoDiferenteDoCriada(){
         Long idExistenteTarefaComStatusEmAndamento = 1L;
 
         Tarefa tarefaComStatusEmAndamento = new Tarefa(1L , TarefaStatus.EM_ANDAMENTO, "Estrutura Projeto", Instant.now(), "Projet TDD");
@@ -92,4 +92,20 @@ public class AtualizarTarefaServiceTest {
                     .atualizarEstadoParaEmAndamento(idExistenteTarefaComStatusEmAndamento);
         });
     }
+
+    @Test
+    public void atualizarEstadoParaEmAndamentoDeveLancarUnprocessableEntityQuandoExisteTarefaEmAndamento(){
+
+        Long idExistenteTarefaComStatusCriada = 1L;
+        
+        Mockito.when(tarefaRepository.existeTarefaEmAndamento())
+                .thenReturn(true);
+
+        Assertions.assertThrows(UnprocessableEntity.class, () -> {
+            tarefaService
+                    .atualizarEstadoParaEmAndamento(idExistenteTarefaComStatusCriada);
+        });
+    }
+
+
 }
