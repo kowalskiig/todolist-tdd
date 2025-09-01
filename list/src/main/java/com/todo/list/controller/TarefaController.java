@@ -27,5 +27,10 @@ public class TarefaController {
         return ResponseEntity.created(uri).body(result);
     }
 
+    @PutMapping(value = "{id}")
+    public ResponseEntity<TarefaResponseDTO> atualizarStatusTarefaParaAndamento(@PathVariable Long id){
+        TarefaResponseDTO result = tarefaService.atualizarEstadoParaEmAndamento(id);
+        return ResponseEntity.ok(result);
+    }
 
 }
