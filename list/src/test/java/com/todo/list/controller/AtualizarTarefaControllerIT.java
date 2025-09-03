@@ -1,22 +1,24 @@
 package com.todo.list.controller;
 
-import com.todo.list.dto.TarefaRequestDTO;
+import com.todo.list.repository.TarefaRepository;
 import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.transaction.annotation.Transactional;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
-@Transactional
 public class AtualizarTarefaControllerIT {
+
+    @Autowired
+    private TarefaRepository tarefaRepository;
 
     @LocalServerPort
     private int port;
@@ -26,7 +28,10 @@ public class AtualizarTarefaControllerIT {
     void setUp() {
         RestAssured.port = port;
         tarefaExistenteIdStatusCriada = 1L;
+
+
         tarefaInexistenteId =3000L;
+
 
     }
 
@@ -53,5 +58,7 @@ public class AtualizarTarefaControllerIT {
                 .statusCode(404)
                 .body("error", is("Tarefa com id (" + tarefaInexistenteId + ") não existe"));
     }
+
+
 
 }
