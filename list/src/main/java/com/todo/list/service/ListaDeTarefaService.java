@@ -1,7 +1,7 @@
 package com.todo.list.service;
 
 import com.todo.list.dto.RequestListaDeTarefa;
-import com.todo.list.dto.RespondeListaDeTarefa;
+import com.todo.list.dto.ResponseListaDeTarefa;
 import com.todo.list.entity.ListaDeTarefa;
 import com.todo.list.mapper.ListaTarefaMapper;
 import com.todo.list.repository.ListaDeTarefaRepository;
@@ -18,7 +18,7 @@ public class ListaDeTarefaService {
     }
 
     @Transactional(readOnly = false)
-    public RespondeListaDeTarefa criarTarefa(RequestListaDeTarefa requestListaDeTarefa) {
+    public ResponseListaDeTarefa criarListaDeTarefa(RequestListaDeTarefa requestListaDeTarefa) {
 
         ListaDeTarefa listaDeTarefa = ListaTarefaMapper.toEntity(requestListaDeTarefa);
 

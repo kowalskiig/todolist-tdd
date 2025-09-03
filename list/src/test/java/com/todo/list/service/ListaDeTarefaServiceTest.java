@@ -1,7 +1,7 @@
 package com.todo.list.service;
 
 import com.todo.list.dto.RequestListaDeTarefa;
-import com.todo.list.dto.RespondeListaDeTarefa;
+import com.todo.list.dto.ResponseListaDeTarefa;
 import com.todo.list.entity.Tarefa;
 import com.todo.list.entity.ListaDeTarefa;
 import com.todo.list.enums.TarefaStatus;
@@ -51,7 +51,7 @@ public class ListaDeTarefaServiceTest {
     public void AdicionaListaDeTarefaDeveRetornarListaDeTarefaCriadaQuandoSucesso(){
         RequestListaDeTarefa requestListaDeTarefa = new RequestListaDeTarefa("Nome");
 
-        RespondeListaDeTarefa result = listaDeTarefaService.criarTarefa(requestListaDeTarefa);
+        ResponseListaDeTarefa result = listaDeTarefaService.criarListaDeTarefa(requestListaDeTarefa);
 
         Assertions.assertNotNull(result.getId());
         Assertions.assertEquals(tarefa.getName(), result.getName());

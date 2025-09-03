@@ -3,7 +3,7 @@ package com.todo.list.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RespondeListaDeTarefa {
+public class ResponseListaDeTarefa {
 
     private Long id;
 
@@ -11,11 +11,11 @@ public class RespondeListaDeTarefa {
 
     private List<TarefaResponseDTO> tarefas = new ArrayList<>();
 
-    public RespondeListaDeTarefa(){
+    public ResponseListaDeTarefa(){
 
     }
 
-    public RespondeListaDeTarefa(Long id, List<TarefaResponseDTO> tarefas, String name) {
+    public ResponseListaDeTarefa(Long id, List<TarefaResponseDTO> tarefas, String name) {
         this.id = id;
         this.tarefas = tarefas;
         this.name = name;
