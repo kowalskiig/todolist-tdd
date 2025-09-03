@@ -9,7 +9,7 @@ public class RespondeListaDeTarefa {
 
     private String name;
 
-    private List<TarefaResponseDTO> tarefa = new ArrayList<>();
+    private List<TarefaResponseDTO> tarefas = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -19,7 +19,7 @@ public class RespondeListaDeTarefa {
         return name;
     }
 
-    public List<TarefaResponseDTO> getTarefa() {
+    public List<TarefaResponseDTO> getTarefas() {
         return tarefa;
     }
 }
