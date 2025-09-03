@@ -1,12 +1,25 @@
 package com.todo.list.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RespondeListaDeTarefa {
-    public Object getId() {
+
+    private Long id;
+
+    private String name;
+
+    private List<TarefaResponseDTO> tarefa = new ArrayList<>();
+
+    public Long getId() {
+        return id;
     }
 
-    public Object getName() {
+    public String getName() {
+        return name;
     }
 
-    public Object getTarefas() {
+    public List<TarefaResponseDTO> getTarefa() {
+        return tarefa;
     }
 }
