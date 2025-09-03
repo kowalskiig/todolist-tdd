@@ -18,6 +18,10 @@ public class Tarefa {
     @Enumerated(EnumType.STRING)
     private TarefaStatus status;
 
+    @ManyToOne
+    @JoinColumn(name = "listatarefa_id")
+    private ListaDeTarefa listaDeTarefa;
+
     public Tarefa(){
 
     }

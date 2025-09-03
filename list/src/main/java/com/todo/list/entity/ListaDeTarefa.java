@@ -2,14 +2,15 @@ package com.todo.list.entity;
 
 
 
+
 import jakarta.persistence.*;
-import org.springframework.data.annotation.Id;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Entity
-@Table(name = "tb_lista_tarefas")
+@Table(name = "tb_listatarefas")
 public class ListaDeTarefa {
 
     @Id
@@ -18,7 +19,7 @@ public class ListaDeTarefa {
 
     private String name;
 
-    @OneToMany
+    @OneToMany(mappedBy = "listaDeTarefa")
     private List<Tarefa> tarefas = new ArrayList<>();
 
     public ListaDeTarefa(){}
