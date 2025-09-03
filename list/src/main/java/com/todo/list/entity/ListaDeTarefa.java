@@ -18,7 +18,7 @@ public class ListaDeTarefa {
 
     private String name;
 
-    @OneToMany(id.listaDeTarefa)
+    @OneToMany
     private List<Tarefa> tarefas = new ArrayList<>();
 
     public ListaDeTarefa(){}

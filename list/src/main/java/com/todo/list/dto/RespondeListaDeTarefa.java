@@ -11,6 +11,16 @@ public class RespondeListaDeTarefa {
 
     private List<TarefaResponseDTO> tarefas = new ArrayList<>();
 
+    public RespondeListaDeTarefa(){
+
+    }
+
+    public RespondeListaDeTarefa(Long id, List<TarefaResponseDTO> tarefas, String name) {
+        this.id = id;
+        this.tarefas = tarefas;
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }
@@ -20,6 +30,6 @@ public class RespondeListaDeTarefa {
     }
 
     public List<TarefaResponseDTO> getTarefas() {
-        return tarefa;
+        return tarefas;
     }
 }

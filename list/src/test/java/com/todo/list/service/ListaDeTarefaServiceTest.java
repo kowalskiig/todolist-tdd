@@ -38,7 +38,7 @@ public class ListaDeTarefaServiceTest {
 
         tarefa = new Tarefa(1L , TarefaStatus.CRIADA, "Estrutura Projeto", Instant.now(), "Projet TDD");
         listaDeTarefas = new ArrayList<>();
-        listaDeTarefa = new ListaDeTarefa(1L, "Nome", listaDeTarefas);
+        listaDeTarefa = new ListaDeTarefa(1L, "Nome";
         Mockito.when(listaDeTarefaRepository.save(listaDeTarefa));
     }
 
