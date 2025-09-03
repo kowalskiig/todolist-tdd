@@ -20,6 +20,8 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.mockito.ArgumentMatchers.any;
+
 @ExtendWith(SpringExtension.class)
 public class ListaDeTarefaServiceTest {
 
@@ -29,6 +31,8 @@ public class ListaDeTarefaServiceTest {
     @Mock
     private ListaDeTarefaRepository listaDeTarefaRepository;
 
+
+
     private ListaDeTarefa listaDeTarefa;
     private List<Tarefa> listaDeTarefas;
     private Tarefa tarefa;
@@ -36,15 +40,16 @@ public class ListaDeTarefaServiceTest {
     @BeforeEach
     void setUp(){
 
-        tarefa = new Tarefa(1L , TarefaStatus.CRIADA, "Estrutura Projeto", Instant.now(), "Projet TDD");
+
+        tarefa = new Tarefa(1L , TarefaStatus.CRIADA, "Estrutura Projeto", Instant.now(), "Nome");
         listaDeTarefas = new ArrayList<>();
-        listaDeTarefa = new ListaDeTarefa(1L, "Nome";
-        Mockito.when(listaDeTarefaRepository.save(listaDeTarefa));
+        listaDeTarefa = new ListaDeTarefa(1L, "Nome");
+        Mockito.when(listaDeTarefaRepository.save(any())).thenReturn(listaDeTarefa);
     }
 
     @Test
     public void AdicionaListaDeTarefaDeveRetornarListaDeTarefaCriadaQuandoSucesso(){
-        RequestListaDeTarefa requestListaDeTarefa = new RequestListaDeTarefa("Tarefas diárias");
+        RequestListaDeTarefa requestListaDeTarefa = new RequestListaDeTarefa("Nome");
 
         RespondeListaDeTarefa result = listaDeTarefaService.criarTarefa(requestListaDeTarefa);
 
