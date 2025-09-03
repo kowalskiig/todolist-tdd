@@ -22,9 +22,7 @@ public class ListaDeTarefaService {
 
         ListaDeTarefa listaDeTarefa = ListaTarefaMapper.toEntity(requestListaDeTarefa);
 
-        listaDeTarefa = listaDeTarefaRepository.save(listaDeTarefa);
-
-        return ListaTarefaMapper.toDto(listaDeTarefa);
-
+        return ListaTarefaMapper
+                .toDto(listaDeTarefaRepository.save(listaDeTarefa));
     }
 }
