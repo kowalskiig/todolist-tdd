@@ -31,9 +31,12 @@ public class CriarTarefaServiceTest {
 
     private TarefaRequestDTO tarefaRequestDTOComDados;
 
+    private Long idListaDeTarefaExistente;
+
 
     @BeforeEach
     void setUP(){
+        idListaDeTarefaExistente = 2L;
 
         tarefaCriada = new Tarefa(1L ,TarefaStatus.CRIADA, "Estrutura Projeto", Instant.now(), "Projet TDD");
         tarefaRequestDTOComDados = new TarefaRequestDTO("Aprender DTO", "Estrutura Projeto");
@@ -48,11 +51,14 @@ public class CriarTarefaServiceTest {
 
         TarefaResponseDTO tarefaResponseDTO = tarefaService.criarTarefa(tarefaRequestDTOComDados);
 
+
         Assertions.assertNotNull(tarefaResponseDTO.getId());
         Assertions.assertEquals(tarefaResponseDTO.getName(), tarefaCriada.getName());
         Assertions.assertEquals(tarefaResponseDTO.getDescription(), tarefaCriada.getDescription());
         Assertions.assertNotNull(tarefaResponseDTO.getCreatedAt());
         Assertions.assertEquals(TarefaStatus.CRIADA, tarefaResponseDTO.getTarefaStatus());
+
+
     }
 
 
