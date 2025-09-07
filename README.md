@@ -1,71 +1,71 @@
-# ✅ ToDo List API - Gerenciador de Tarefas
+# ToDo List API - Gerenciador de Tarefas
 
 ![Java](https://img.shields.io/badge/Java-21-blue)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.4-brightgreen)
 ![Test Coverage](https://img.shields.io/badge/Testes-TDD%20%2B%20Integração-green)
 ![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow)
 
-API RESTful para gerenciamento de tarefas, com regras reais de negócio e foco em **qualidade de código**, **testabilidade**, **boas práticas** e **resiliência**.
 
-Este projeto foi idealizado com o objetivo de aplicar **TDD (Desenvolvimento Orientado a Testes)** na prática e aprimorar minhas habilidades em **testes automatizados**. A solução foi propositalmente mantida simples, com apenas uma entidade principal (`Tarefa`) e cenários bem definidos para validação de regras de negócio.
+---
+
+> 🧪 Projeto prático focado em TDD (Desenvolvimento Orientado a Testes), boas práticas de design e regras de negócio reais. Idealizado para consolidar conhecimentos em testes automatizados, estrutura limpa e APIs resilientes.
+
+---
+
+## 📌 Visão Geral
+
+A **ToDo List API** é uma aplicação RESTful para gerenciamento de tarefas. O projeto foi mantido propositalmente simples (com apenas uma entidade principal) para **focar 100% na aplicação correta de TDD, qualidade de código, validações e domínio da lógica de negócio**.
 
 ---
 
 ## 💡 Funcionalidades
 
-- 📌 Criar tarefas com título e descrição.
-- ⏱️ A tarefa inicia com status `CRIADA` e data de criação automática.
-- ✅ Atualizar o status da tarefa:
+- 📌 Criar tarefas com título e descrição obrigatórios
+- ⏱️ Tarefa criada com status padrão `CRIADA` e data automática
+- 🔁 Alterar status em ordem obrigatória:
   - `CRIADA → EM_ANDAMENTO → FINALIZADA`
-- ⚠️ Apenas uma tarefa pode estar com status `EM_ANDAMENTO` por vez.
-- ❌ Ações com IDs inexistentes são bloqueadas com exceções apropriadas.
-- 🔁 Listagem com ordenação por data (em desenvolvimento).
-- 🧪 Cobertura de testes para todos os fluxos críticos.
+- ⚠️ Apenas uma tarefa pode estar com status `EM_ANDAMENTO` ao mesmo tempo
+- ❌ IDs inexistentes disparam exceções personalizadas
+- 🗂️ Listagem de tarefas (em desenvolvimento, com ordenação)
+- 🧪 Testes automatizados cobrindo 100% dos fluxos críticos
 
 ---
 
-## 📐 Regras de Negócio
+## Regras de Negócio
 
-- Título e descrição são obrigatórios.
-- A data de criação é gerada automaticamente.
-- O status inicial é sempre `CRIADA`.
-- Transições válidas:
+- `título` e `descrição` são obrigatórios
+- `status` inicial é sempre `CRIADA`
+- `data de criação` gerada automaticamente
+- Transições de status obrigam seguir a ordem:
   - `CRIADA → EM_ANDAMENTO → FINALIZADA`
-- **Não é permitido ter mais de uma tarefa em andamento.**
-- Operações com IDs inexistentes disparam exceções personalizadas.
-
----
-
-## 🛠️ Tecnologias Utilizadas
-
-- **Java 21**
-- **Spring Boot 3.5.4**
-- **Spring Data JPA (H2 in-memory)**
-- **JUnit 5 + Mockito**
-- **RestAssured** (testes de integração)
-- **TDD (Test Driven Development)**
-- **Swagger/OpenAPI** *(em desenvolvimento)*
+- Só é permitida **uma única tarefa em andamento**
+- Ações inválidas ou com ID inexistente lançam exceções claras e tratadas
 
 ---
 
 ## 🧪 Estratégia de Testes
 
-O projeto foi construído seguindo os princípios do TDD:
+O projeto segue a risca o fluxo de TDD: **RED → GREEN → REFACTOR**
 
-- ✅ Testes unitários da camada de serviço
-- ✅ Testes de integração dos endpoints com RestAssured
-- ✅ Cobertura de exceções, validações e regras de negócio
+- ✅ Testes unitários na camada de serviço
+- ✅ Testes de integração com `RestAssured`
+- ✅ Cobertura de regras de negócio e exceções
+- ✅ Assertivas claras e orientadas a comportamento esperado
+
+---
+
+## 📚 Aprendizados Técnicos
+
+- Aplicação prática do ciclo TDD completo
+- Pensamento em regras de negócio antes do código
+- Melhoria na escrita de testes robustos e legíveis
+- Princípios de **YAGNI** (You Ain’t Gonna Need It)
+- Princípios de desenvolvimento ágil como **YAGNI**, **DRY**, **KISS** e **Baby steps**
+- Projeto 100% dirigido por cenários reais e validações de negócio
+- Maturidade na separação de responsabilidades (DTOs, mappers, service, etc.)
 
 ---
 
-## 🧪 Aprendizados 
-
-- Aprimoramento na habilidade de testes (tanto unitários quanto integração);
-- Entendimento sobre a metodologia de desenvolvimento TDD, compreendendo o fluxo RED, GREEN, REFACTOR.
-- Mundança de pensamento, acompanhando um dos príncipios do TDD é adicionar ao código apenas aquilo que você irá usar, YAGNI ("You Ain't Gonna Need It")
-- Maior maturidade ao pensar na resolução do problema antes da implementação no código.
-
----
 
 ## 📁 Estrutura do Projeto
 
@@ -85,3 +85,24 @@ com.todo.list
 ---
 
 > ℹ️ Ainda em desenvolvimento. Novas funcionalidades e documentação (Swagger/Postman) serão adicionadas em breve.
+
+
+---
+
+## 🚧 Status
+
+> Projeto em desenvolvimento — próximas entregas incluem:
+- Documentação Swagger/OpenAPI
+- Filtro de listagem por status e ordenação
+- Deploy via Docker (CI/CD)
+
+---
+
+## 👨‍💻 Autor
+
+**Gustavo Eiji Kowalski Hatada**  
+[![LinkedIn Badge](https://img.shields.io/badge/-Gustavo%20Kowalski-blue?style=flat&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/gustavokowalski/)
+
+---
+
+> 💬 Projeto voltado para reforçar habilidades práticas em TDD, organização por camadas, validações robustas e responsabilidade única. Mesmo sendo simples, entrega alta qualidade técnica e reflete conhecimento real do processo de desenvolvimento profissional.
