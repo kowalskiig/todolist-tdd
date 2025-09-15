@@ -1,35 +1,33 @@
-# ToDo List API - Gerenciador de Tarefas
+#  ToDo List API - Gerenciador de Tarefas
 
-![Java](https://img.shields.io/badge/Java-21-blue)
-![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.4-brightgreen)
-![Test Coverage](https://img.shields.io/badge/Testes-TDD%20%2B%20Integração-green)
-![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow)
+Aplicação RESTful para gerenciamento de tarefas com foco total em **TDD (Desenvolvimento Orientado a Testes)**, qualidade de código e domínio da lógica de negócio. Criado para consolidar boas práticas em testes, design limpo e regras reais de negócio.
+
+Objetivo reforçar habilidades em **TDD**, **design limpo**, **validações sólidas** e construção de API com foco em qualidade técnica, além de aplicar conceitos ágeis no desenvolvimento backend.
+
+<p align="center">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=java,spring,postgresql" />
+  </a>
+</p>
+<p align="center">
+  <img src="https://img.shields.io/badge/Cobertura-100%25-brightgreen?style=for-the-badge&logo=pytest" />
+  <img src="https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow?style=for-the-badge" />
+</p>
 
 
----
+## Visão geral do projeto
 
-> 🧪 Projeto prático focado em TDD (Desenvolvimento Orientado a Testes), boas práticas de design e regras de negócio reais. Idealizado para consolidar conhecimentos em testes automatizados, estrutura limpa e APIs resilientes.
+A **ToDo List API** é uma aplicação simples e direta, com apenas uma entidade principal (`Tarefa`), idealizada para **aplicação 100% baseada em TDD**, com testes de unidade, integração e regras de negócio explícitas.
 
----
+##  Funcionalidades
 
-## 📌 Visão Geral
-
-A **ToDo List API** é uma aplicação RESTful para gerenciamento de tarefas. O projeto foi mantido propositalmente simples (com apenas uma entidade principal) para **focar 100% na aplicação correta de TDD, qualidade de código, validações e domínio da lógica de negócio**.
-
----
-
-## 💡 Funcionalidades
-
-- 📌 Criar tarefas com título e descrição obrigatórios
-- ⏱️ Tarefa criada com status padrão `CRIADA` e data automática
-- 🔁 Alterar status em ordem obrigatória:
-  - `CRIADA → EM_ANDAMENTO → FINALIZADA`
-- ⚠️ Apenas uma tarefa pode estar com status `EM_ANDAMENTO` ao mesmo tempo
-- ❌ IDs inexistentes disparam exceções personalizadas
-- 🗂️ Listagem de tarefas (em desenvolvimento, com ordenação)
-- 🧪 Testes automatizados cobrindo 100% dos fluxos críticos
-
----
+-  Criar tarefas com título e descrição obrigatórios  
+-  Data de criação gerada automaticamente  
+-  Alterar status em ordem obrigatória:  
+  `CRIADA → EM_ANDAMENTO → FINALIZADA`  
+-  Apenas uma tarefa pode estar com status `EM_ANDAMENTO` ao mesmo tempo  
+-  IDs inexistentes disparam exceções personalizadas  
+-  Listagem de tarefas (com ordenação e filtros - em desenvolvimento)  
 
 ## Regras de Negócio
 
@@ -45,26 +43,23 @@ A **ToDo List API** é uma aplicação RESTful para gerenciamento de tarefas. O 
 
 ## 🧪 Estratégia de Testes
 
-O projeto segue a risca o fluxo de TDD: **RED → GREEN → REFACTOR**
+Projeto desenvolvido com ciclo completo de TDD: `RED → GREEN → REFACTOR`
 
-- ✅ Testes unitários na camada de serviço
-- ✅ Testes de integração com `RestAssured`
-- ✅ Cobertura de regras de negócio e exceções
-- ✅ Assertivas claras e orientadas a comportamento esperado
-
----
+-  Testes unitários na camada de serviço ✔️  
+- Testes de integração com `RestAssured` ✔️  
+- Cobertura de regras de negócio e exceções ✔️  
+- Assertivas claras orientadas ao comportamento esperado ✔️ 
 
 ## 📚 Aprendizados Técnicos
 
-- Aplicação prática do ciclo TDD completo
-- Pensamento em regras de negócio antes do código
-- Melhoria na escrita de testes robustos e legíveis
-- Princípios de **YAGNI** (You Ain’t Gonna Need It)
-- Princípios de desenvolvimento ágil como **YAGNI**, **DRY**, **KISS** e **Baby steps**
-- Projeto 100% dirigido por cenários reais e validações de negócio
-- Maturidade na separação de responsabilidades (DTOs, mappers, service, etc.)
+- Aplicação real do ciclo **TDD** completo ✔️ 
+- Pensamento em regras de negócio antes do código ✔️ 
+- Escrita de testes robustos e legíveis ✔️ 
+- Princípios ágeis aplicados: `YAGNI`, `DRY`, `KISS`, `Baby Steps` ✔️ 
+- Projeto voltado à **responsabilidade única** e separação em camadas ✔️ 
 
 ---
+
 
 
 ## 📁 Estrutura do Projeto
@@ -84,25 +79,21 @@ com.todo.list
 
 ---
 
-> ℹ️ Ainda em desenvolvimento. Novas funcionalidades e documentação (Swagger/Postman) serão adicionadas em breve.
+## 🚧 Status do Projeto
 
-
----
-
-## 🚧 Status
-
-> Projeto em desenvolvimento — próximas entregas incluem:
-- Documentação Swagger/OpenAPI
-- Filtro de listagem por status e ordenação
-- Deploy via Docker (CI/CD)
+- [x] CRUD básico de tarefas com validações  
+- [x] Regras de negócio e exceções personalizadas  
+- [x] Cobertura de testes 100%  
+- [ ] Documentação Swagger/OpenAPI  
+- [ ] Filtro de listagem por status e ordenação  
+- [ ] Deploy via Docker + CI/CD  
 
 ---
 
-## 👨‍💻 Autor
 
-**Gustavo Eiji Kowalski Hatada**  
-[![LinkedIn Badge](https://img.shields.io/badge/-Gustavo%20Kowalski-blue?style=flat&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/gustavokowalski/)
+📬 Conecte-se comigo 
+  <a href="https://www.linkedin.com/in/gustavokowalski/" target="_blank">LinkedIn</a> | 
+  <a href="mailto:kkowalskigustavo@gmail.com">Email</a>
 
----
 
-> 💬 Projeto voltado para reforçar habilidades práticas em TDD, organização por camadas, validações robustas e responsabilidade única. Mesmo sendo simples, entrega alta qualidade técnica e reflete conhecimento real do processo de desenvolvimento profissional.
+
