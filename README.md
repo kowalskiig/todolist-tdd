@@ -79,17 +79,6 @@ com.todo.list
 
 ---
 
-## 🚧 Status do Projeto
-
-- [x] CRUD básico de tarefas com validações  
-- [x] Regras de negócio e exceções personalizadas  
-- [x] Cobertura de testes 100%  
-- [ ] Documentação Swagger/OpenAPI  
-- [ ] Filtro de listagem por status e ordenação  
-- [ ] Deploy via Docker + CI/CD  
-
----
-
 
 📬 Conecte-se comigo 
   <a href="https://www.linkedin.com/in/gustavokowalski/" target="_blank">LinkedIn</a> | 
