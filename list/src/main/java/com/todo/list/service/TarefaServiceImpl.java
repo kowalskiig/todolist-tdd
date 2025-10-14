@@ -50,6 +50,8 @@ public class TarefaServiceImpl{
     }
 
     public TarefaResponseDTO finalizarTarefa(Long id) {
+        Tarefa tarefa = tarefaRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Id inexistente"));
         return null;
     }
 }
