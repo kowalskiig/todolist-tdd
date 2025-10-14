@@ -48,4 +48,8 @@ public class TarefaServiceImpl{
         return TarefaMapper
                 .tarefaParaDto(tarefaRepository.save(tarefa));
     }
+
+    public TarefaResponseDTO finalizarTarefa(Long id) {
+        return null;
+    }
 }

@@ -93,7 +93,7 @@ public class AtualizarTarefaServiceTest {
     }
 
     @Test
-    public void atualizarEstadoParaEmAndamentoDeveLancarUnprocessableEntityQuandoEstadoDiferenteDoCriada(){
+    public void atualizarEstadoParaEmAndamentoDeveLancarUnprocessableEntityQuandoEstadoDiferenteDeCriada(){
 
         Assertions.assertThrows(UnprocessableEntity.class, () -> {
 
@@ -113,6 +113,18 @@ public class AtualizarTarefaServiceTest {
                     .atualizarEstadoParaEmAndamento(idExistenteTarefa);
         });
     }
+
+    @Test
+    public void finalizarTarefaDeveRetornarResourceNotFoundExceptionQuandoIdNaoExistir(){
+
+
+        ResourceNotFoundException exception = Assertions.assertThrows(ResourceNotFoundException.class, () -> {
+            tarefaService
+                    .finalizarTarefa(idInexistente);
+        });
+        Assertions.assertEquals("Id inexistente", exception.getMessage());
+    }
+
 
 
 }
