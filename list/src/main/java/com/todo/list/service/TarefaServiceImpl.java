@@ -49,9 +49,16 @@ public class TarefaServiceImpl{
                 .tarefaParaDto(tarefaRepository.save(tarefa));
     }
 
+    @Transactional
     public TarefaResponseDTO finalizarTarefa(Long id) {
-        Tarefa tarefa = tarefaRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Id inexistente"));
+        Tarefa tarefa = buscarTarefaPorId(id);
         return null;
     }
+
+    private Tarefa buscarTarefaPorId(Long id){
+        return  tarefaRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Id inexistente"));
+    }
+
+
 }
