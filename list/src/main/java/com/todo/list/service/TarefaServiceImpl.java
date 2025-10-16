@@ -45,6 +45,7 @@ public class TarefaServiceImpl{
 
         tarefa.setStatus(TarefaStatus.EM_ANDAMENTO);
 
+
         return TarefaMapper
                 .tarefaParaDto(tarefaRepository.save(tarefa));
     }

@@ -30,25 +30,27 @@ public class AtualizarTarefaServiceTest {
     private TarefaRepository tarefaRepository;
 
 
-    private Long idExistenteTarefa, idInexistente, idExistenteTarefaComStatusEmAndamento;
+    private Long idExistenteTarefaCriada, idInexistente, idExistenteTarefaComStatusEmAndamento, idExistenteTarefa5MinutosAntes;
 
-    private Tarefa tarefaStatusCriada,tarefaComStatusEmAndamento;
+    private Tarefa tarefaStatusCriada,tarefaComStatusEmAndamento, tarefaStatusEmAndamentoCom5MinutosInvalido;
 
 
     @BeforeEach
     void setUp(){
 
-    idExistenteTarefa =1L;
+    idExistenteTarefaCriada =1L;
     idInexistente=2L;
     idExistenteTarefaComStatusEmAndamento=3L;
+    idExistenteTarefa5MinutosAntes=4L;
 
 
     tarefaStatusCriada = new Tarefa(1L , TarefaStatus.CRIADA, "Estrutura Projeto", Instant.now(), "Projet TDD");
 
     tarefaComStatusEmAndamento = new Tarefa(1L , TarefaStatus.EM_ANDAMENTO, "Estrutura Projeto", Instant.now(), "Projet TDD");
 
+        tarefaStatusEmAndamentoCom5MinutosInvalido = new Tarefa(1L, TarefaStatus.EM_ANDAMENTO, "Teste 5 minutos", Instant.now().minusSeconds(240), "Teste 5 Minutos");
 
-    Mockito.when(tarefaRepository.findById(idExistenteTarefa))
+    Mockito.when(tarefaRepository.findById(idExistenteTarefaCriada))
                 .thenReturn(Optional.of(tarefaStatusCriada));
 
     Mockito.when(tarefaRepository.findById(idInexistente))
@@ -56,6 +58,9 @@ public class AtualizarTarefaServiceTest {
 
     Mockito.when(tarefaRepository.findById(idExistenteTarefaComStatusEmAndamento))
                 .thenReturn(Optional.of(tarefaComStatusEmAndamento));
+
+        Mockito.when(tarefaRepository.findById(idExistenteTarefa5MinutosAntes))
+                .thenReturn(Optional.of(tarefaStatusEmAndamentoCom5MinutosInvalido));
 
 
 
@@ -73,7 +78,7 @@ public class AtualizarTarefaServiceTest {
         //acao
 
         TarefaResponseDTO tarefaResponseDTO = tarefaService
-                .atualizarEstadoParaEmAndamento(idExistenteTarefa);
+                .atualizarEstadoParaEmAndamento(idExistenteTarefaCriada);
 
         //validacao
 
@@ -110,7 +115,7 @@ public class AtualizarTarefaServiceTest {
 
         Assertions.assertThrows(UnprocessableEntity.class, () -> {
             tarefaService
-                    .atualizarEstadoParaEmAndamento(idExistenteTarefa);
+                    .atualizarEstadoParaEmAndamento(idExistenteTarefaCriada);
         });
     }
 
@@ -123,6 +128,25 @@ public class AtualizarTarefaServiceTest {
                     .finalizarTarefa(idInexistente);
         });
         Assertions.assertEquals("Id inexistente", exception.getMessage());
+    }
+
+    @Test
+    public void finalizarTarefaDeveRetornarUnprocessableEntityExceptionStatusTarefaForDiferentedDeEmAndamento(){
+
+        UnprocessableEntity exception = Assertions.assertThrows(UnprocessableEntity.class, () -> {
+            tarefaService
+                    .finalizarTarefa(idExistenteTarefaCriada);
+        });
+        Assertions.assertEquals("O status da tarefa tem que ser (EM ANDAMENTO)", exception.getMessage());
+    }
+
+    @Test
+    public void finalizarTarefaDeveRetornarUnprocessableEntityExceptionQuandoTempoForMenorQue5Minutos(){
+        UnprocessableEntity exception = Assertions.assertThrows(UnprocessableEntity.class, () -> {
+            tarefaService
+                    .finalizarTarefa(idExistenteTarefa5MinutosAntes);
+        });
+        Assertions.assertEquals("Só é possivel finalizar uma tarefa que está em andamento a no minimo 5 minutos", exception.getMessage());
     }
 
 
