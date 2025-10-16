@@ -12,6 +12,8 @@ import com.todo.list.repository.TarefaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
+
 @Service
 public class TarefaServiceImpl{
 
@@ -53,6 +55,14 @@ public class TarefaServiceImpl{
     @Transactional
     public TarefaResponseDTO finalizarTarefa(Long id) {
         Tarefa tarefa = buscarTarefaPorId(id);
+
+        if(!tarefa.getStatus().equals(TarefaStatus.EM_ANDAMENTO)){
+            throw new UnprocessableEntity("O status da tarefa tem que ser (EM ANDAMENTO)");
+        }
+
+        if(!tarefa.getCreatedAt().isAfter(tarefa.getCreatedAt().plusSeconds(300))){
+            throw new UnprocessableEntity("Só é possivel finalizar uma tarefa que está em andamento a no minimo 5 minutos");
+        }
         return null;
     }
 
