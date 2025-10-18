@@ -60,12 +60,15 @@ public class TarefaServiceImpl{
             throw new UnprocessableEntity("O status da tarefa tem que ser (EM ANDAMENTO)");
         }
 
-        if(!tarefa.getCreatedAt().isAfter(tarefa.getCreatedAt().plusSeconds(300))){
+        if(!Instant.now().isAfter(tarefa.getCreatedAt().plusSeconds(300))){
             throw new UnprocessableEntity("Só é possivel finalizar uma tarefa que está em andamento a no minimo 5 minutos");
         }
 
+        tarefa.setStatus(TarefaStatus.FINALIZADA);
+        tarefa.setCreatedAt(Instant.now());
 
-        return null;
+        tarefaRepository.save(tarefa);
+        return TarefaMapper.tarefaParaDto(tarefa);
     }
 
     private Tarefa buscarTarefaPorId(Long id){

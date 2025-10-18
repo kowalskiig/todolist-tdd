@@ -32,7 +32,7 @@ public class AtualizarTarefaServiceTest {
 
     private Long idExistenteTarefaCriada, idInexistente, idExistenteTarefaComStatusEmAndamento, idExistenteTarefa5MinutosAntes, idExistenteTarefaEmAndamento5MinutosDepois;
 
-    private Tarefa tarefaStatusCriada,tarefaComStatusEmAndamento, tarefaStatusEmAndamentoCom5MinutosInvalido, tarefaStatusEmAndamentoCom5MinutosValido, tarefaStatusFinalizada;
+    private Tarefa tarefaStatusCriada,tarefaComStatusEmAndamento, tarefaStatusEmAndamentoCom5MinutosInvalido, tarefaStatusEmAndamentoCom5MinutosValido;
 
 
     @BeforeEach
@@ -51,9 +51,9 @@ public class AtualizarTarefaServiceTest {
 
     tarefaStatusEmAndamentoCom5MinutosInvalido = new Tarefa(1L, TarefaStatus.EM_ANDAMENTO, "Teste 5 minutos", Instant.now().minusSeconds(240), "Teste 5 Minutos");
 
-    tarefaStatusEmAndamentoCom5MinutosValido = new Tarefa(1L, TarefaStatus.EM_ANDAMENTO, "Teste 5 minutos", Instant.now().minusSeconds(240), "Teste 5 Minutos");
+    tarefaStatusEmAndamentoCom5MinutosValido = new Tarefa(1L, TarefaStatus.EM_ANDAMENTO, "Teste 5 minutos", Instant.now().minusSeconds(301), "Teste 5 Minutos");
 
-    tarefaStatusFinalizada = new Tarefa(1L, TarefaStatus.FINALIZADA, "Nova Tarefa", Instant.now(), "Teste 5 Minutos");
+
 
 
     Mockito.when(tarefaRepository.findById(idExistenteTarefaCriada))
@@ -162,6 +162,8 @@ public class AtualizarTarefaServiceTest {
 
     @Test
     public void finalizarTarefaDeveRetornarTarefaAtualizadaQuandoCenarioDeSucesso(){
+        Tarefa tarefaStatusFinalizada = tarefaStatusEmAndamentoCom5MinutosValido;
+        tarefaStatusFinalizada.setCreatedAt(Instant.now());
 
         Mockito.when(tarefaRepository.save(any()))
                 .thenReturn(tarefaStatusFinalizada);

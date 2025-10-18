@@ -66,4 +66,8 @@ public class Tarefa {
     public void setStatus(TarefaStatus status) {
         this.status = status;
     }
+
+    public void setCreatedAt(Instant createdAt) {
+        this.createdAt = createdAt;
+    }
 }
